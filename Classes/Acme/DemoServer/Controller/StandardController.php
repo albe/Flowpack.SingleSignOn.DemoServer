@@ -9,21 +9,18 @@ namespace Acme\DemoServer\Controller;
 use TYPO3\Flow\Annotations as Flow;
 
 /**
- * Standard controller for the Acme.DemoServer package 
+ * SSO server standard controller
  *
  * @Flow\Scope("singleton")
  */
 class StandardController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 
 	/**
-	 * Index action
+	 * Display a welcome screen
 	 *
 	 * @return void
 	 */
 	public function indexAction() {
-		$this->view->assign('foos', array(
-			'bar', 'baz'
-		));
 	}
 
 }

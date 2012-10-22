@@ -1,0 +1,12 @@
+TYPO3:
+  Flow:
+    security:
+      authentication:
+        providers:
+          DefaultProvider:
+            provider: PersistedUsernamePasswordProvider
+            requestPatterns:
+              controllerObjectName: 'Acme\DemoServer\Controller\.*'
+            entryPoint: WebRedirect
+            entryPointOptions:
+              uri: 'sso/login'

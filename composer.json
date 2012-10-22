@@ -1,1 +1,14 @@
-{"name":"acme\/demoserver","type":"typo3-flow-package","description":"","require":{"typo3\/flow":"*"},"autoload":{"psr-0":{"Acme\\DemoServer":"Classes"}}}
+{
+	"name": "acme\/demoserver",
+	"type": "typo3-flow-package",
+	"description": "SSO Demo Server",
+	"require": {
+		"typo3\/flow": "*",
+		"typo3\/singlesignon-server": "*"
+	},
+	"autoload": {
+		"psr-0": {
+			"Acme\\DemoServer": "Classes"
+		}
+	}
+}
