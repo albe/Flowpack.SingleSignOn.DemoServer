@@ -5,8 +5,6 @@ TYPO3:
         providers:
           DefaultProvider:
             provider: PersistedUsernamePasswordProvider
-            requestPatterns:
-              controllerObjectName: 'Acme\DemoServer\Controller\.*'
             entryPoint: WebRedirect
             entryPointOptions:
               uri: 'sso/login'

@@ -1,0 +1,6 @@
+-
+  name: 'DemoServer welcome'
+  uriPattern: ''
+  defaults:
+    '@package':    'Acme.DemoServer'
+    '@controller': 'Standard'
