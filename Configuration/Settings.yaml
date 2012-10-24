@@ -7,4 +7,4 @@ TYPO3:
             provider: PersistedUsernamePasswordProvider
             entryPoint: WebRedirect
             entryPointOptions:
-              uri: 'sso/login'
+              uri: 'login'

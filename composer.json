@@ -4,7 +4,8 @@
 	"description": "SSO Demo Server",
 	"require": {
 		"typo3\/flow": "*",
-		"typo3\/singlesignon-server": "*"
+		"typo3\/singlesignon-server": "*",
+		"typo3\/twitter-bootstrap": "*"
 	},
 	"autoload": {
 		"psr-0": {

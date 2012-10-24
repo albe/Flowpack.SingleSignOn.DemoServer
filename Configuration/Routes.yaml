@@ -4,3 +4,11 @@
   defaults:
     '@package':    'Acme.DemoServer'
     '@controller': 'Standard'
+
+-
+  name: 'DemoServer login'
+  uriPattern: 'login(/@action)'
+  defaults:
+    '@package':    'Acme.DemoServer'
+    '@controller': 'Login'
+    '@action':     'index'

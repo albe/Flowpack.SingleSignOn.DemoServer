@@ -1,9 +1,134 @@
-<f:layout name="Default" />
+<!DOCTYPE html>
+{namespace bootstrap=TYPO3\Twitter\Bootstrap\ViewHelpers}
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+	<meta charset="utf-8">
+	<title>SSO Demo Server</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
 
-<f:section name="Title">SSO demo server</f:section>
+	<f:base/>
+	<bootstrap:include version="2.1" includeJQuery="TRUE"/>
+	<link href="{f:uri.resource(path: 'Stylesheets/styles.css')}" rel="stylesheet"/>
+</head>
 
-<f:section name="Content">
-	<h1>Welcome!</h1>
-	<p>You arrived at a SSO demo server.</p>
-	<p>Please authenticate from a <a href="http://ssodemoinstance.dev">demo instance</a>.</p>
-</f:section>
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+	<div class="navbar-inner">
+		<div class="container-fluid">
+			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</a>
+			<a class="brand" href="#">SSO Demo Server</a>
+
+			<f:security.ifAuthenticated>
+				<div class="btn-group pull-right">
+					<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+						<i class="icon-user"></i> [Username]
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+							<f:link.action controller="Login" action="logout">Logout</f:link.action>
+						</li>
+					</ul>
+				</div>
+			</f:security.ifAuthenticated>
+			<div class="nav-collapse">
+				<ul class="nav">
+					<li class="active"><a href="#">Home</a></li>
+				</ul>
+			</div>
+			<!--/.nav-collapse -->
+		</div>
+	</div>
+</div>
+
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span3">
+			<div class="well sidebar-nav">
+				<ul class="nav nav-list">
+					<li class="nav-header">Sidebar</li>
+					<li class="active"><a href="#">Link</a></li>
+					<li><a href="#">Link</a></li>
+					<li><a href="#">Link</a></li>
+					<li><a href="#">Link</a></li>
+				</ul>
+			</div>
+			<!--/.well -->
+		</div>
+		<!--/span-->
+		<div class="span9">
+			<f:flashmessages/>
+
+			<div class="hero-unit">
+				<h1>Welcome!</h1>
+
+				<p>You arrived at the SSO demo server. It handles your primary session and
+					acts as the SSO endpoint for all clients.</p>
+
+				<p>
+					<a href="http://ssodemoinstance.dev/" class="btn btn-primary">Go to demo instance</a>
+				</p>
+			</div>
+			<f:security.ifAuthenticated>
+				<f:then></f:then>
+				<f:else>
+					<div class="alert alert-info alert-block">
+						<h4 class="alert-heading">Not authenticated</h4>
+
+						<p>
+							You are not yet authenticated, so an SSO client will ask
+							you to log in on the server before proceeding.
+						</p>
+
+						<p>
+							<f:link.action controller="Login" action="index" class="btn">Login now</f:link.action>
+						</p>
+					</div>
+				</f:else>
+			</f:security.ifAuthenticated>
+
+			<div class="row-fluid">
+				<div class="span4">
+					<h2>SSO</h2>
+
+					<p>A Single Sign On systems allows authentication between
+						different websites.</p>
+				</div>
+				<!--/span-->
+				<div class="span4">
+					<h2>Server</h2>
+
+					<p>The SSO Server provides an authentication endpoint
+						used by a SSO client with a SingleSignOnProvider for authentication.</p>
+				</div>
+				<!--/span-->
+				<div class="span4">
+					<h2>Client</h2>
+
+					<p>A SSO Client is any web application that uses the SingleSignOnProvider for authentication.
+					</p>
+				</div>
+				<!--/span-->
+			</div>
+			<!--/row-->
+		</div>
+		<!--/span-->
+	</div>
+	<!--/row-->
+
+	<hr>
+
+	<footer>
+		<p>TYPO3.SingleSignon</p>
+	</footer>
+
+</div>
+</body>
+</html>
