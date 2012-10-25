@@ -35,6 +35,18 @@ class SetupCommandController extends \TYPO3\Flow\Cli\CommandController {
 
 	/**
 	 * @Flow\Inject
+	 * @var \TYPO3\Flow\Security\AccountRepository
+	 */
+	protected $accountRepository;
+
+	/**
+	 * @Flow\Inject
+	 * @var \TYPO3\Flow\Security\AccountFactory
+	 */
+	protected $accountFactory;
+
+	/**
+	 * @Flow\Inject
 	 * @var \TYPO3\Flow\Persistence\PersistenceManagerInterface
 	 */
 	protected $persistenceManager;
@@ -69,6 +81,8 @@ class SetupCommandController extends \TYPO3\Flow\Cli\CommandController {
 		$this->outputLine('Registered demo client key pair');
 
 		$this->ssoClientRepository->removeAll();
+		$this->accountRepository->removeAll();
+			// Persist removal, because otherwise primary key constraints fail
 		$this->persistenceManager->persistAll();
 
 		$ssoClient = new \TYPO3\SingleSignOn\Server\Domain\Model\SsoClient();
@@ -76,6 +90,22 @@ class SetupCommandController extends \TYPO3\Flow\Cli\CommandController {
 		$ssoClient->setPublicKey($clientPublicKeyUuid);
 		$this->ssoClientRepository->add($ssoClient);
 		$this->outputLine('Created demo client with identifier "' . $ssoClient->getIdentifier() . '"');
+
+		$this->addUserCommand('admin', 'password', 'Administrator');
+	}
+
+	/**
+	 * Add a user account with DefaultProvider
+	 *
+	 * @param string $username
+	 * @param string $password
+	 * @param string $roles
+	 */
+	public function addUserCommand($username, $password, $roles) {
+		$roleIdentifiers = \TYPO3\Flow\Utility\Arrays::trimExplode(',', $roles);
+		$account = $this->accountFactory->createAccountWithPassword($username, $password, $roleIdentifiers, 'DefaultProvider');
+		$this->accountRepository->add($account);
+		$this->outputLine('Created account with identifier "' . $username . '"');
 	}
 
 }
