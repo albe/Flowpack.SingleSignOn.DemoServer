@@ -35,6 +35,12 @@ class SetupCommandController extends \TYPO3\Flow\Cli\CommandController {
 
 	/**
 	 * @Flow\Inject
+	 * @var \TYPO3\SingleSignOn\Server\Domain\Repository\AccessTokenRepository
+	 */
+	protected $accessTokenRepository;
+
+	/**
+	 * @Flow\Inject
 	 * @var \TYPO3\Flow\Security\AccountRepository
 	 */
 	protected $accountRepository;
@@ -68,7 +74,7 @@ class SetupCommandController extends \TYPO3\Flow\Cli\CommandController {
 		$this->outputLine('Registered demo server key pair');
 
 		$globalSettings = $this->yamlSource->load(FLOW_PATH_CONFIGURATION . '/Settings');
-		$globalSettings['TYPO3']['SingleSignOn']['Server']['ssoServerKeyPairUuid'] = $serverKeyPairUuid;
+		$globalSettings['TYPO3']['SingleSignOn']['Server']['server']['keyPairUuid'] = $serverKeyPairUuid;
 		$this->yamlSource->save(FLOW_PATH_CONFIGURATION . '/Settings', $globalSettings);
 		$this->outputLine('Updated settings');
 
@@ -80,6 +86,7 @@ class SetupCommandController extends \TYPO3\Flow\Cli\CommandController {
 		$clientPublicKeyUuid = $this->rsaWalletService->registerPublicKeyFromString($clientPublicKeyString);
 		$this->outputLine('Registered demo client key pair');
 
+		$this->accessTokenRepository->removeAll();
 		$this->ssoClientRepository->removeAll();
 		$this->accountRepository->removeAll();
 			// Persist removal, because otherwise primary key constraints fail
