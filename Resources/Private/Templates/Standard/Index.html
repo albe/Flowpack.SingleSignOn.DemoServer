@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 {namespace bootstrap=TYPO3\Twitter\Bootstrap\ViewHelpers}
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+{namespace demo=Acme\DemoServer\ViewHelpers}
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:f="http://www.w3.org/1999/html">
 <head>
 	<meta charset="utf-8">
 	<title>SSO Demo Server</title>
@@ -26,17 +27,26 @@
 			<a class="brand" href="#">SSO Demo Server</a>
 
 			<f:security.ifAuthenticated>
+				<demo:security.account as="account">
 				<div class="btn-group pull-right">
 					<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-						<i class="icon-user"></i> [Username]
+						<i class="icon-user"></i> {account.accountIdentifier}
 						<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu">
+						<li>
+							<a href="#">
+								<strong>Roles:</strong>
+								<f:for each="{account.roles}" as="role">{role}</f:for>
+							</a>
+						</li>
+						<li class="divider"></li>
 						<li>
 							<f:link.action controller="Login" action="logout">Logout</f:link.action>
 						</li>
 					</ul>
 				</div>
+				</demo:security.account>
 			</f:security.ifAuthenticated>
 			<div class="nav-collapse">
 				<ul class="nav">
