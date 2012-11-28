@@ -14,6 +14,15 @@
     '@action':     'index'
 
 -
+  name: 'DemoServer sessions'
+  uriPattern: 'sessions(/{@action})'
+  defaults:
+    '@package':    'Acme.DemoServer'
+    '@controller': 'Sessions'
+    '@action':     'index'
+  appendExceedingArguments: TRUE
+
+-
   name: 'DemoServer test service with action'
   uriPattern: 'test/user/{@action}'
   defaults:
