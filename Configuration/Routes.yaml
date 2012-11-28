@@ -7,8 +7,15 @@
 
 -
   name: 'DemoServer login'
-  uriPattern: 'login(/@action)'
+  uriPattern: 'login(/{@action})'
   defaults:
     '@package':    'Acme.DemoServer'
     '@controller': 'Login'
     '@action':     'index'
+
+-
+  name: 'DemoServer test service with action'
+  uriPattern: 'test/user/{@action}'
+  defaults:
+    '@package':    'Acme.DemoServer'
+    '@controller': 'Test\User'

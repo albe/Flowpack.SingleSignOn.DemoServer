@@ -47,6 +47,12 @@ class SetupCommandController extends \TYPO3\Flow\Cli\CommandController {
 
 	/**
 	 * @Flow\Inject
+	 * @var \Acme\DemoServer\Domain\Repository\UserRepository
+	 */
+	protected $userRepository;
+
+	/**
+	 * @Flow\Inject
 	 * @var \TYPO3\Flow\Security\AccountFactory
 	 */
 	protected $accountFactory;
@@ -89,6 +95,7 @@ class SetupCommandController extends \TYPO3\Flow\Cli\CommandController {
 		$this->accessTokenRepository->removeAll();
 		$this->ssoClientRepository->removeAll();
 		$this->accountRepository->removeAll();
+		$this->userRepository->removeAll();
 			// Persist removal, because otherwise primary key constraints fail
 		$this->persistenceManager->persistAll();
 
@@ -102,17 +109,21 @@ class SetupCommandController extends \TYPO3\Flow\Cli\CommandController {
 	}
 
 	/**
-	 * Add a user account with DefaultProvider
+	 * Add a user and account with DefaultProvider
 	 *
 	 * @param string $username
 	 * @param string $password
 	 * @param string $roles
+	 * @return void
 	 */
 	public function addUserCommand($username, $password, $roles) {
 		$roleIdentifiers = \TYPO3\Flow\Utility\Arrays::trimExplode(',', $roles);
-		$account = $this->accountFactory->createAccountWithPassword($username, $password, $roleIdentifiers, 'DefaultProvider');
-		$this->accountRepository->add($account);
-		$this->outputLine('Created account with identifier "' . $username . '"');
+		$user = new \Acme\DemoServer\Domain\Model\User();
+		$user->setUsername($username);
+		$user->setPassword($password);
+		$user->setRole($roleIdentifiers[0]);
+		$this->userRepository->add($user);
+		$this->outputLine('Created user and account with identifier "' . $username . '"');
 	}
 
 }
