@@ -64,6 +64,11 @@ class SetupCommandController extends \TYPO3\Flow\Cli\CommandController {
 	protected $persistenceManager;
 
 	/**
+	 * @var array
+	 */
+	protected $settings;
+
+	/**
 	 * Sets up a demo server installation with fixture data
 	 *
 	 * Overwrites existing data in the database.
@@ -100,10 +105,10 @@ class SetupCommandController extends \TYPO3\Flow\Cli\CommandController {
 		$this->persistenceManager->persistAll();
 
 		$ssoClient = new \TYPO3\SingleSignOn\Server\Domain\Model\SsoClient();
-		$ssoClient->setIdentifier('demoinstance');
+		$ssoClient->setBaseUri($this->settings['demoInstanceUri']);
 		$ssoClient->setPublicKey($clientPublicKeyUuid);
 		$this->ssoClientRepository->add($ssoClient);
-		$this->outputLine('Created demo client with identifier "' . $ssoClient->getIdentifier() . '"');
+		$this->outputLine('Created demo client with identifier "' . $ssoClient->getBaseUri() . '"');
 
 		$this->addUserCommand('admin', 'password', 'Administrator');
 	}
@@ -124,6 +129,13 @@ class SetupCommandController extends \TYPO3\Flow\Cli\CommandController {
 		$user->setRole($roleIdentifiers[0]);
 		$this->userRepository->add($user);
 		$this->outputLine('Created user and account with identifier "' . $username . '"');
+	}
+
+	/**
+	 * @param array $settings
+	 */
+	public function injectSettings($settings) {
+		$this->settings = $settings;
 	}
 
 }
