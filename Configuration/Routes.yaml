@@ -23,8 +23,15 @@
   appendExceedingArguments: TRUE
 
 -
-  name: 'DemoServer test service with action'
+  name: 'DemoServer test user service with action'
   uriPattern: 'test/user/{@action}'
   defaults:
     '@package':    'Acme.DemoServer'
     '@controller': 'Test\User'
+
+-
+  name: 'DemoServer test session service with action'
+  uriPattern: 'test/session/{@action}'
+  defaults:
+    '@package':    'Acme.DemoServer'
+    '@controller': 'Test\Session'
