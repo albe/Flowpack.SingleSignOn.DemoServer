@@ -89,14 +89,6 @@ class SetupCommandController extends \TYPO3\Flow\Cli\CommandController {
 		$this->yamlSource->save(FLOW_PATH_CONFIGURATION . '/Settings', $globalSettings);
 		$this->outputLine('Updated settings');
 
-		$clientPublicKeyString = \TYPO3\Flow\Utility\Files::getFileContents('resource://Acme.DemoServer/Private/Fixtures/DemoClient.pub', FILE_TEXT);
-		if ($clientPublicKeyString === FALSE) {
-			$this->outputLine('Could not open DemoClient.pub, aborting.');
-			return;
-		}
-		$clientPublicKeyUuid = $this->rsaWalletService->registerPublicKeyFromString($clientPublicKeyString);
-		$this->outputLine('Registered demo client key pair');
-
 		$this->accessTokenRepository->removeAll();
 		$this->ssoClientRepository->removeAll();
 		$this->accountRepository->removeAll();
@@ -104,11 +96,31 @@ class SetupCommandController extends \TYPO3\Flow\Cli\CommandController {
 			// Persist removal, because otherwise primary key constraints fail
 		$this->persistenceManager->persistAll();
 
-		$ssoClient = new \TYPO3\SingleSignOn\Server\Domain\Model\SsoClient();
-		$ssoClient->setBaseUri($this->settings['demoInstanceUri']);
-		$ssoClient->setPublicKey($clientPublicKeyUuid);
-		$this->ssoClientRepository->add($ssoClient);
-		$this->outputLine('Created demo client with identifier "' . $ssoClient->getBaseUri() . '"');
+		if (!isset($this->settings['clients']) || !is_array($this->settings['clients'])) {
+			$this->outputLine('Missing Acme.DemoServer.clients settings, aborting.');
+			return;
+		}
+		foreach ($this->settings['clients'] as $clientConfiguration) {
+			$ssoClient = new \TYPO3\SingleSignOn\Server\Domain\Model\SsoClient();
+			$ssoClient->setBaseUri($clientConfiguration['baseUri']);
+			$ssoClient->setServiceBasePath($clientConfiguration['serviceBasePath']);
+
+			if (isset($clientConfiguration['publicKeyFilename'])) {
+				$clientPublicKeyFilename = $clientConfiguration['publicKeyFilename'];
+			} else {
+				$clientPublicKeyFilename = 'resource://Acme.DemoServer/Private/Fixtures/DemoClient.pub';
+			}
+			$clientPublicKeyString = \TYPO3\Flow\Utility\Files::getFileContents($clientPublicKeyFilename, FILE_TEXT);
+			if ($clientPublicKeyString === FALSE) {
+				$this->outputLine('Could not open DemoClient.pub, aborting.');
+				return;
+			}
+			$clientPublicKeyUuid = $this->rsaWalletService->registerPublicKeyFromString($clientPublicKeyString);
+
+			$ssoClient->setPublicKey($clientPublicKeyUuid);
+			$this->ssoClientRepository->add($ssoClient);
+			$this->outputLine('Created demo client "' . $ssoClient->getBaseUri() . '"');
+		}
 
 		$this->addUserCommand('admin', 'password', 'Administrator');
 	}
