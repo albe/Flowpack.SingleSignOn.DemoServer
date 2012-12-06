@@ -16,46 +16,7 @@
 
 <body>
 
-<div class="navbar navbar-inverse navbar-fixed-top">
-	<div class="navbar-inner">
-		<div class="container-fluid">
-			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</a>
-			<a class="brand" href="#">SSO Demo Server</a>
-
-			<f:security.ifAuthenticated>
-				<demo:security.account as="account">
-				<div class="btn-group pull-right">
-					<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-						<i class="icon-user"></i> {account.accountIdentifier}
-						<span class="caret"></span>
-					</a>
-					<ul class="dropdown-menu">
-						<li>
-							<a href="#">
-								<strong>Roles:</strong>
-								<f:for each="{account.roles}" as="role">{role}</f:for>
-							</a>
-						</li>
-						<li class="divider"></li>
-						<li>
-							<f:link.action controller="Login" action="logout">Logout</f:link.action>
-						</li>
-					</ul>
-				</div>
-				</demo:security.account>
-			</f:security.ifAuthenticated>
-			<div class="nav-collapse">
-				<ul class="nav">
-					<li class="active"><a href="#">Home</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
-</div>
+<f:render partial="Shared/Navigation" />
 
 <div class="container-fluid">
 	<div class="row-fluid">
@@ -63,10 +24,12 @@
 			<div class="well sidebar-nav">
 				<ul class="nav nav-list">
 					<li class="nav-header">Sidebar</li>
-					<li class="active"><a href="/">Home</a></li>
-					<li><a href="/sessions">Sessions</a></li>
-					<li><a href="#">Link</a></li>
-					<li><a href="#">Link</a></li>
+					<li class="active">
+						<f:link.action action="index" controller="Standard">Home</f:link.action>
+					</li>
+					<li>
+						<f:link.action action="index" controller="Sessions">Sessions</f:link.action>
+					</li>
 				</ul>
 			</div>
 		</div>

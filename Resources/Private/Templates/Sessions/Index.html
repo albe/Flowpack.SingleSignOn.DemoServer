@@ -11,51 +11,13 @@
 
 	<f:base/>
 	<bootstrap:include version="2.1" includeJQuery="TRUE"/>
+	<script src="{f:uri.resource(path: 'JavaScripts/jquery.tablesorter.min.js')}"></script>
 	<link href="{f:uri.resource(path: 'Stylesheets/styles.css')}" rel="stylesheet"/>
 </head>
 
 <body>
 
-<div class="navbar navbar-inverse navbar-fixed-top">
-	<div class="navbar-inner">
-		<div class="container-fluid">
-			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</a>
-			<a class="brand" href="#">SSO Demo Server</a>
-
-			<f:security.ifAuthenticated>
-				<demo:security.account as="account">
-				<div class="btn-group pull-right">
-					<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-						<i class="icon-user"></i> {account.accountIdentifier}
-						<span class="caret"></span>
-					</a>
-					<ul class="dropdown-menu">
-						<li>
-							<a href="#">
-								<strong>Roles:</strong>
-								<f:for each="{account.roles}" as="role">{role}</f:for>
-							</a>
-						</li>
-						<li class="divider"></li>
-						<li>
-							<f:link.action controller="Login" action="logout">Logout</f:link.action>
-						</li>
-					</ul>
-				</div>
-				</demo:security.account>
-			</f:security.ifAuthenticated>
-			<div class="nav-collapse">
-				<ul class="nav">
-					<li class="active"><a href="#">Home</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
-</div>
+<f:render partial="Shared/Navigation"/>
 
 <div class="container-fluid">
 	<div class="row-fluid">
@@ -63,10 +25,12 @@
 			<div class="well sidebar-nav">
 				<ul class="nav nav-list">
 					<li class="nav-header">Sidebar</li>
-					<li><a href="/">Home</a></li>
-					<li class="active"><a href="/sessions">Sessions</a></li>
-					<li><a href="#">Link</a></li>
-					<li><a href="#">Link</a></li>
+					<li>
+						<f:link.action action="index" controller="Standard">Home</f:link.action>
+					</li>
+					<li class="active">
+						<f:link.action action="index" controller="Sessions">Sessions</f:link.action>
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -76,24 +40,49 @@
 			<div class="row-fluid">
 				<div class="span12">
 					<h2>Active Sessions</h2>
-					<table class="table">
+					<table class="table" id="active-sessions">
 						<thead>
-							<tr>
-								<th>Session Id</th>
-								<th></th>
-							</tr>
+						<tr>
+							<th>Session Id</th>
+							<th data-sorter="timestamp">Last Activity</th>
+							<th>Accounts</th>
+							<th></th>
+						</tr>
 						</thead>
 						<tbody>
-							<f:for each="{activeSessions}" as="session">
-								<tr>
-									<td>{session.id}</td>
-									<td>
-										<f:link.action action="destroy" arguments="{session: session.id}" class="btn btn-danger"><i class="icon-trash icon-white"></i> Destroy</f:link.action>
-									</td>
-								</tr>
-							</f:for>
+						<f:for each="{activeSessions}" as="session">
+							<tr>
+								<td>{session.id}</td>
+								<td data-timestamp="{session.lastActivityTimestamp}">
+									<demo:format.timeAgo>{session.lastActivityTimestamp}</demo:format.timeAgo>
+								</td>
+								<td>
+									<demo:session.accounts session="{session}" as="accounts">
+										<demo:format.join items="{accounts}"/>
+									</demo:session.accounts>
+								</td>
+								<td>
+									<f:link.action action="destroy" arguments="{session: session.id}" class="btn btn-danger"><i class="icon-trash icon-white"></i> Destroy</f:link.action>
+								</td>
+							</tr>
+						</f:for>
 						</tbody>
 					</table>
+					<script>
+						jQuery(function($) {
+							$.tablesorter.addParser({
+								id: 'timestamp',
+								is: function(s) {
+									return false;
+								},
+								format: function(s, table, cell, cellIndex) {
+									return $(cell).attr('data-timestamp');
+								},
+								type: 'numeric'
+							});
+							$('#active-sessions').tablesorter({sortList: [[1,1]]});
+						});
+					</script>
 				</div>
 			</div>
 		</div>

@@ -4,6 +4,7 @@
   defaults:
     '@package':    'Acme.DemoServer'
     '@controller': 'Standard'
+    '@action':     'index'
 
 -
   name: 'DemoServer login'
