@@ -102,8 +102,7 @@ class SetupCommandController extends \TYPO3\Flow\Cli\CommandController {
 		}
 		foreach ($this->settings['clients'] as $clientConfiguration) {
 			$ssoClient = new \TYPO3\SingleSignOn\Server\Domain\Model\SsoClient();
-			$ssoClient->setBaseUri($clientConfiguration['baseUri']);
-			$ssoClient->setServiceBasePath($clientConfiguration['serviceBasePath']);
+			$ssoClient->setServiceBaseUri($clientConfiguration['serviceBaseUri']);
 
 			if (isset($clientConfiguration['publicKeyFilename'])) {
 				$clientPublicKeyFilename = $clientConfiguration['publicKeyFilename'];
@@ -119,7 +118,7 @@ class SetupCommandController extends \TYPO3\Flow\Cli\CommandController {
 
 			$ssoClient->setPublicKey($clientPublicKeyUuid);
 			$this->ssoClientRepository->add($ssoClient);
-			$this->outputLine('Created demo client "' . $ssoClient->getBaseUri() . '"');
+			$this->outputLine('Created demo client "' . $ssoClient->getServiceBaseUri() . '"');
 		}
 
 		$this->addUserCommand('admin', 'password', 'Administrator');
