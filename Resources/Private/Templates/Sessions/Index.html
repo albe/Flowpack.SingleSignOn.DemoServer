@@ -39,6 +39,18 @@
 
 			<div class="row-fluid">
 				<div class="span12">
+					<h2>Current Session</h2>
+					<p>
+						<f:if condition="{currentSession.started}">
+							<f:then>
+								<span class="label label-success">Session started:</span> {currentSession.id}
+							</f:then>
+							<f:else>
+								<span class="label label-info">Session not started</span>
+							</f:else>
+						</f:if>
+
+					</p>
 					<h2>Active Sessions</h2>
 					<table class="table" id="active-sessions">
 						<thead>
@@ -62,7 +74,7 @@
 									</demo:session.accounts>
 								</td>
 								<td>
-									<f:link.action action="destroy" arguments="{session: session.id}" class="btn btn-danger"><i class="icon-trash icon-white"></i> Destroy</f:link.action>
+									<f:link.action action="destroy" arguments="{session: session.id}" class="btn btn-danger"><i class="icon-trash icon-white"></i></f:link.action>
 								</td>
 							</tr>
 						</f:for>
@@ -83,6 +95,8 @@
 							$('#active-sessions').tablesorter({sortList: [[1,1]]});
 						});
 					</script>
+
+					<f:link.action action="destroyAll" class="btn btn-danger"><i class="icon-trash icon-white"></i> Destroy all sessions</f:link.action>
 				</div>
 			</div>
 		</div>

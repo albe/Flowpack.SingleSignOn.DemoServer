@@ -25,6 +25,9 @@ class SessionsController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 	 * Display sessions
 	 */
 	public function indexAction() {
+		$currentSession = $this->sessionManager->getCurrentSession();
+		$this->view->assign('currentSession', $currentSession);
+
 		$activeSessions = $this->sessionManager->getActiveSessions();
 		$this->view->assign('activeSessions', $activeSessions);
 	}
@@ -39,6 +42,20 @@ class SessionsController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 		$session->destroy('Through web interface');
 
 		$this->addFlashMessage('Session destroyed');
+
+		$this->redirect('index');
+	}
+
+	/**
+	 * Destroys all sessions
+	 */
+	public function destroyAllAction() {
+		$sessions = $this->sessionManager->getActiveSessions();
+		foreach ($sessions as $session) {
+			$session->destroy('Through test service');
+		}
+
+		$this->addFlashMessage('All sessions destroyed');
 
 		$this->redirect('index');
 	}
