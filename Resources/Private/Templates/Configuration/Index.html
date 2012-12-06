@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+{namespace bootstrap=TYPO3\Twitter\Bootstrap\ViewHelpers}
+{namespace demo=Acme\DemoServer\ViewHelpers}
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:f="http://www.w3.org/1999/html">
+<head>
+	<meta charset="utf-8">
+	<title>SSO Demo Server - Configuration</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<f:base/>
+	<bootstrap:include version="2.1" includeJQuery="TRUE"/>
+	<script src="{f:uri.resource(path: 'JavaScripts/jquery.tablesorter.min.js')}"></script>
+	<link href="{f:uri.resource(path: 'Stylesheets/styles.css')}" rel="stylesheet"/>
+</head>
+
+<body>
+
+<f:render partial="Shared/Navigation"/>
+
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span3">
+			<div class="well sidebar-nav">
+				<ul class="nav nav-list">
+					<li class="nav-header">Sidebar</li>
+					<li>
+						<f:link.action action="index" controller="Standard">Home</f:link.action>
+					</li>
+					<li>
+						<f:link.action action="index" controller="Sessions">Sessions</f:link.action>
+					</li>
+					<li class="active">
+						<f:link.action action="index" controller="Configuration">Configuration</f:link.action>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="span9">
+			<f:flashMessages/>
+
+			<div class="row-fluid">
+				<div class="span12">
+					<h2>Registered SSO clients</h2>
+					<table class="table">
+						<thead>
+						<tr>
+							<th>Service base URI</th>
+							<th>Public key fingerprint</th>
+						</tr>
+						</thead>
+						<tbody>
+						<f:for each="{ssoClients}" as="ssoClient">
+							<tr>
+								<td>{ssoClient.serviceBaseUri}</td>
+								<td>{ssoClient.publicKey}</td>
+							</tr>
+						</f:for>
+						</tbody>
+					</table>
+
+					<h2>Settings <small>TYPO3.SingleSignOn.Server</small></h2>
+					<pre>{serverSettings}</pre>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<hr>
+
+	<footer>
+		<p>TYPO3.SingleSignon</p>
+	</footer>
+
+</div>
+</body>
+</html>

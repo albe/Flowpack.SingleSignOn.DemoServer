@@ -121,7 +121,7 @@ class SetupCommandController extends \TYPO3\Flow\Cli\CommandController {
 			$this->outputLine('Created demo client "' . $ssoClient->getServiceBaseUri() . '"');
 		}
 
-		$this->addUserCommand('admin', 'password', 'Administrator');
+		$this->addUserCommand('admin', 'password', 'Administrator', 'Joe', 'Bloggs');
 	}
 
 	/**
@@ -130,13 +130,17 @@ class SetupCommandController extends \TYPO3\Flow\Cli\CommandController {
 	 * @param string $username
 	 * @param string $password
 	 * @param string $roles
+	 * @param string $firstname
+	 * @param string $lastname
 	 * @return void
 	 */
-	public function addUserCommand($username, $password, $roles) {
+	public function addUserCommand($username, $password, $roles, $firstname = '', $lastname = '') {
 		$roleIdentifiers = \TYPO3\Flow\Utility\Arrays::trimExplode(',', $roles);
 		$user = new \Acme\DemoServer\Domain\Model\User();
 		$user->setUsername($username);
 		$user->setPassword($password);
+		$user->setFirstname($firstname);
+		$user->setLastname($lastname);
 		$user->setRole($roleIdentifiers[0]);
 		$this->userRepository->add($user);
 		$this->outputLine('Created user and account with identifier "' . $username . '"');
