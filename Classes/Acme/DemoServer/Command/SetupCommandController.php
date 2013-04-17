@@ -53,6 +53,12 @@ class SetupCommandController extends \TYPO3\Flow\Cli\CommandController {
 
 	/**
 	 * @Flow\Inject
+	 * @var \TYPO3\Flow\Security\Policy\RoleRepository
+	 */
+	protected $roleRepository;
+
+	/**
+	 * @Flow\Inject
 	 * @var \TYPO3\Flow\Security\AccountFactory
 	 */
 	protected $accountFactory;
@@ -141,7 +147,12 @@ class SetupCommandController extends \TYPO3\Flow\Cli\CommandController {
 		$user->setPassword($password);
 		$user->setFirstname($firstname);
 		$user->setLastname($lastname);
-		$user->setRole($roleIdentifiers[0]);
+		$role = $this->roleRepository->findByIdentifier($roleIdentifiers[0]);
+		if ($role === NULL) {
+			$role = new \TYPO3\Flow\Security\Policy\Role($roleIdentifiers[0]);
+			$this->roleRepository->add($role);
+		}
+		$user->setRole($role);
 		$this->userRepository->add($user);
 		$this->outputLine('Created user and account with identifier "' . $username . '"');
 	}

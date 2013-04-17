@@ -41,7 +41,7 @@ class User extends \TYPO3\Party\Domain\Model\AbstractParty {
 	/**
 	 * @var string
 	 * @Flow\Validate(type="NotEmpty")
-	 * @Flow\Validate(type="RegularExpression", options={"regularExpression"="/^(Administrator)$/"})
+	 * @Flow\Validate(type="RegularExpression", options={"regularExpression"="/^(Administrator|User)$/"})
 	 */
 	protected $role;
 
@@ -50,6 +50,12 @@ class User extends \TYPO3\Party\Domain\Model\AbstractParty {
 	 * @var \TYPO3\Flow\Security\Cryptography\HashService
 	 */
 	protected $hashService;
+
+	/**
+	 * @Flow\Inject
+	 * @var \TYPO3\Flow\Security\Policy\RoleRepository
+	 */
+	protected $roleRepository;
 
 	/**
 	 * Construct a user
@@ -95,7 +101,14 @@ class User extends \TYPO3\Party\Domain\Model\AbstractParty {
 	 * @param string $role
 	 */
 	public function setRole($role) {
-		$this->role = $role;
+		if (is_string($role)) {
+			$roleIdentifier = $role;
+			$role = $this->roleRepository->findByIdentifier($roleIdentifier);
+			if ($role === NULL) {
+				throw new \InvalidArgumentException('The role "' . $roleIdentifier . '" does not exist.', 1366148156);
+			}
+		}
+		$this->role = $role->getIdentifier();
 		$account = $this->getPrimaryAccount();
 		$account->setRoles(array($role));
 	}
