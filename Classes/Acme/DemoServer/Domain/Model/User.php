@@ -41,7 +41,7 @@ class User extends \TYPO3\Party\Domain\Model\AbstractParty {
 	/**
 	 * @var string
 	 * @Flow\Validate(type="NotEmpty")
-	 * @Flow\Validate(type="RegularExpression", options={"regularExpression"="/^(Administrator|User)$/"})
+	 * @Flow\Validate(type="RegularExpression", options={"regularExpression"="/^(Acme\.DemoInstance\:Administrator|Acme\.DemoInstance\:User)$/"})
 	 */
 	protected $role;
 

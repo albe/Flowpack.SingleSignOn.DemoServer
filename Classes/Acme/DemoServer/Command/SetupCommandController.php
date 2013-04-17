@@ -127,9 +127,9 @@ class SetupCommandController extends \TYPO3\Flow\Cli\CommandController {
 			$this->outputLine('Created demo client "' . $ssoClient->getServiceBaseUri() . '"');
 		}
 
-		$this->addUserCommand('admin', 'password', 'Administrator', 'Joe', 'Bloggs');
-		$this->addUserCommand('user1', 'password', 'User', 'Michael', 'Potter');
-		$this->addUserCommand('user2', 'password', 'User', 'Jamie', 'Morgan');
+		$this->addUserCommand('admin', 'password', 'Acme.DemoInstance:Administrator', 'Joe', 'Bloggs');
+		$this->addUserCommand('user1', 'password', 'Acme.DemoInstance:User', 'Michael', 'Potter');
+		$this->addUserCommand('user2', 'password', 'Acme.DemoInstance:User', 'Jamie', 'Morgan');
 	}
 
 	/**
