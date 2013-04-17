@@ -58,7 +58,8 @@ class UserController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 	public function resetAction() {
 		$users = $this->userRepository->findAll();
 		foreach ($users as $user) {
-			if ($user->getUsername() !== 'admin') {
+			// FIXME Find another way to keep static setup data (e.g. source property)
+			if ($user->getUsername() !== 'admin' && $user->getUsername() !== 'user1' && $user->getUsername() !== 'user2') {
 				$this->userRepository->remove($user);
 			}
 		}

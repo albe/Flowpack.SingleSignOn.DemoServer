@@ -128,6 +128,8 @@ class SetupCommandController extends \TYPO3\Flow\Cli\CommandController {
 		}
 
 		$this->addUserCommand('admin', 'password', 'Administrator', 'Joe', 'Bloggs');
+		$this->addUserCommand('user1', 'password', 'User', 'Michael', 'Potter');
+		$this->addUserCommand('user2', 'password', 'User', 'Jamie', 'Morgan');
 	}
 
 	/**

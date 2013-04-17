@@ -20,7 +20,29 @@
 	<div class="row-fluid">
 		<div class="span12">
 
-			<p>The SSO server doesn't have a session for you (yet)</p>
+			<f:security.ifAuthenticated>
+				<f:then>
+					<div class="alert alert-warning alert-block">
+						<h4 class="alert-heading">Already authenticated</h4>
+
+						<p>
+							You are already authenticated. A successful login will override the currently authenticated account and
+							should notify all registrered clients.
+						</p>
+					</div>
+				</f:then>
+				<f:else>
+					<div class="alert alert-warning alert-block">
+						<h4 class="alert-heading">Not authenticated</h4>
+
+						<p>
+							Not authenticated yet. A succesful login with one of the accounts on the server will
+							redirect back to a SSO client (if in the middle of a SSO authentication).
+						</p>
+					</div>
+
+				</f:else>
+			</f:security.ifAuthenticated>
 
 			<f:form action="authenticate">
 				<div class="modal">

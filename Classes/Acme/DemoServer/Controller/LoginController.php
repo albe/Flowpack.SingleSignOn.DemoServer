@@ -36,7 +36,7 @@ class LoginController extends \TYPO3\Flow\Security\Authentication\Controller\Abs
 			$this->redirectToRequest($originalRequest);
 		}
 
-		$this->addFlashMessage('Could not redirect to original request', 'Error in authentication', \TYPO3\Flow\Error\Message::SEVERITY_WARNING);
+		$this->addFlashMessage('No original SSO request present. Account authenticated on server.', 'Authentication successful', \TYPO3\Flow\Error\Message::SEVERITY_OK);
 		$this->redirect('index', 'Standard');
 	}
 

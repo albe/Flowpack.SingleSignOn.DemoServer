@@ -50,7 +50,22 @@
 				</p>
 			</div>
 			<f:security.ifAuthenticated>
-				<f:then></f:then>
+				<f:then>
+					<demo:security.account as="account">
+					<div id="login-status" class="alert alert-info alert-block">
+						<h4 class="alert-heading">Logged in as: {account.accountIdentifier}</h4>
+
+						<p>
+							You are already authenticated, so an SSO client should get the authenticated
+							account from the SSO server.
+						</p>
+
+						<p>
+							<f:link.action controller="Login" action="index" class="btn">Login again</f:link.action>
+						</p>
+					</div>
+					</demo:security.account>
+				</f:then>
 				<f:else>
 					<div class="alert alert-info alert-block">
 						<h4 class="alert-heading">Not authenticated</h4>
