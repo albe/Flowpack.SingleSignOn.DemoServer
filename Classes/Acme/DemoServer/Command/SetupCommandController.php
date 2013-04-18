@@ -29,13 +29,13 @@ class SetupCommandController extends \TYPO3\Flow\Cli\CommandController {
 
 	/**
 	 * @Flow\Inject
-	 * @var \TYPO3\SingleSignOn\Server\Domain\Repository\SsoClientRepository
+	 * @var \Flowpack\SingleSignOn\Server\Domain\Repository\SsoClientRepository
 	 */
 	protected $ssoClientRepository;
 
 	/**
 	 * @Flow\Inject
-	 * @var \TYPO3\SingleSignOn\Server\Domain\Repository\AccessTokenRepository
+	 * @var \Flowpack\SingleSignOn\Server\Domain\Repository\AccessTokenRepository
 	 */
 	protected $accessTokenRepository;
 
@@ -107,7 +107,7 @@ class SetupCommandController extends \TYPO3\Flow\Cli\CommandController {
 			return;
 		}
 		foreach ($this->settings['clients'] as $clientConfiguration) {
-			$ssoClient = new \TYPO3\SingleSignOn\Server\Domain\Model\SsoClient();
+			$ssoClient = new \Flowpack\SingleSignOn\Server\Domain\Model\SsoClient();
 			$ssoClient->setServiceBaseUri($clientConfiguration['serviceBaseUri']);
 
 			if (isset($clientConfiguration['publicKeyFilename'])) {

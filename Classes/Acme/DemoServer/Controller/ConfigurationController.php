@@ -17,7 +17,7 @@ class ConfigurationController extends \TYPO3\Flow\Mvc\Controller\ActionControlle
 
 	/**
 	 * @Flow\Inject
-	 * @var \TYPO3\SingleSignOn\Server\Domain\Repository\SsoClientRepository
+	 * @var \Flowpack\SingleSignOn\Server\Domain\Repository\SsoClientRepository
 	 */
 	protected $ssoClientRepository;
 
@@ -34,7 +34,7 @@ class ConfigurationController extends \TYPO3\Flow\Mvc\Controller\ActionControlle
 		$ssoClients = $this->ssoClientRepository->findAll();
 		$this->view->assign('ssoClients', $ssoClients);
 
-		$serverSettings = $this->configurationManager->getConfiguration(\TYPO3\Flow\Configuration\ConfigurationManager::CONFIGURATION_TYPE_SETTINGS, 'TYPO3.SingleSignOn.Server');
+		$serverSettings = $this->configurationManager->getConfiguration(\TYPO3\Flow\Configuration\ConfigurationManager::CONFIGURATION_TYPE_SETTINGS, 'Flowpack.SingleSignOn.Server');
 		$yaml = \Symfony\Component\Yaml\Yaml::dump($serverSettings);
 		$this->view->assign('serverSettings', $yaml);
 	}
