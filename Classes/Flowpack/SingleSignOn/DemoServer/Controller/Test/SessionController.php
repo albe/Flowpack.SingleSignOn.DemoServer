@@ -1,20 +1,19 @@
 <?php
-namespace Acme\DemoServer\Controller\Test;
+namespace Flowpack\SingleSignOn\DemoServer\Controller\Test;
 
-/*                                                                        *
- * This script belongs to the TYPO3 Flow package "Acme.DemoServer".       *
- *                                                                        *
- *                                                                        */
+/*                                                                                   *
+ * This script belongs to the TYPO3 Flow package "Flowpack.SingleSignOn.DemoServer". *
+ *                                                                                   */
 
 use TYPO3\Flow\Annotations as Flow;
-use \Acme\DemoServer\Domain\Model\User;
+use TYPO3\Flow\Mvc\Controller\ActionController;
 
 /**
  * Session management for acceptance tests
  *
  * @Flow\Scope("singleton")
  */
-class SessionController extends \TYPO3\Flow\Mvc\Controller\ActionController {
+class SessionController extends ActionController {
 
 	/**
 	 * @Flow\Inject

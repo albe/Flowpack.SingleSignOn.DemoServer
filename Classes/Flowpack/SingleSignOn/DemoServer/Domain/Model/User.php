@@ -1,27 +1,20 @@
 <?php
-namespace Acme\DemoServer\Domain\Model;
+namespace Flowpack\SingleSignOn\DemoServer\Domain\Model;
 
-/*                                                                        *
- * This script belongs to the TYPO3 Flow package "Acme.DemoServer".       *
- *                                                                        *
- *                                                                        */
+/*                                                                                   *
+ * This script belongs to the TYPO3 Flow package "Flowpack.SingleSignOn.DemoServer". *
+ *                                                                                   */
 
 use TYPO3\Flow\Annotations as Flow;
 use Doctrine\ORM\Mapping as ORM;
+use TYPO3\Party\Domain\Model\AbstractParty;
 
 /**
  * User domain model
  *
  * @Flow\Entity
  */
-class User extends \TYPO3\Party\Domain\Model\AbstractParty {
-
-	/**
-	 * The username of the user
-	 * @var string
-	 * @Flow\Validate(type="NotEmpty")
-	 */
-	protected $username;
+class User extends AbstractParty {
 
 	/**
 	 * @var string
@@ -39,39 +32,16 @@ class User extends \TYPO3\Party\Domain\Model\AbstractParty {
 	protected $company = '';
 
 	/**
-	 * @var string
-	 * @Flow\Validate(type="NotEmpty")
-	 * @Flow\Validate(type="RegularExpression", options={"regularExpression"="/^(Acme\.DemoInstance\:Administrator|Acme\.DemoInstance\:User)$/"})
-	 */
-	protected $role;
-
-	/**
 	 * @Flow\Inject
 	 * @var \TYPO3\Flow\Security\Cryptography\HashService
 	 */
 	protected $hashService;
 
 	/**
-	 * @Flow\Inject
-	 * @var \TYPO3\Flow\Security\Policy\RoleRepository
-	 */
-	protected $roleRepository;
-
-	/**
-	 * Construct a user
-	 */
-	public function __construct() {
-		parent::__construct();
-		$account = new \TYPO3\Flow\Security\Account();
-		$account->setAuthenticationProviderName('DefaultProvider');
-		$this->addAccount($account);
-	}
-
-	/**
 	 * @param string $username
+	 * @return void
 	 */
 	public function setUsername($username) {
-		$this->username = $username;
 		$account = $this->getPrimaryAccount();
 		$account->setAccountIdentifier($username);
 	}
@@ -80,7 +50,7 @@ class User extends \TYPO3\Party\Domain\Model\AbstractParty {
 	 * @return string
 	 */
 	public function getUsername() {
-		return $this->username;
+		return $this->getPrimaryAccount()->getAccountIdentifier();
 	}
 
 	/**
@@ -91,26 +61,10 @@ class User extends \TYPO3\Party\Domain\Model\AbstractParty {
 	}
 
 	/**
-	 * @return string
+	 * @return \TYPO3\Flow\Security\Policy\Role
 	 */
 	public function getRole() {
-		return $this->role;
-	}
-
-	/**
-	 * @param string $role
-	 */
-	public function setRole($role) {
-		if (is_string($role)) {
-			$roleIdentifier = $role;
-			$role = $this->roleRepository->findByIdentifier($roleIdentifier);
-			if ($role === NULL) {
-				throw new \InvalidArgumentException('The role "' . $roleIdentifier . '" does not exist.', 1366148156);
-			}
-		}
-		$this->role = $role->getIdentifier();
-		$account = $this->getPrimaryAccount();
-		$account->setRoles(array($role));
+		return current($this->getPrimaryAccount()->getRoles());
 	}
 
 	/**

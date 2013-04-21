@@ -9,16 +9,22 @@ TYPO3:
             entryPointOptions:
               uri: 'login'
 
-Acme:
-  DemoServer:
-    # The link to the primary demo instance (for the demo server frontend)
-    demoInstanceUri: ''
-    # A list of SSO clients to register in the demo server
-    clients:
-      # -
-      #  # Base URI of the client, acts as the identifier
-      #  baseUri: 'http://ssoinstance/'
-      #  # Service base path where SSO client webservices are mounted
-      #  serviceBasePath: /sso
-      #  # An optional public key filename, if none is specified the following key will be used
-      #  publicKeyFilename: 'resource://Acme.DemoServer/Private/Fixtures/DemoClient.pub'
+Flowpack:
+  SingleSignOn:
+    DemoServer:
+
+      # The link to the primary demo instance (for the demo server frontend)
+      demoInstanceUri: ''
+
+      # A list of SSO clients to register in the demo server
+      clients:
+
+        # -
+        #  # Base URI of the client, acts as the identifier
+        #  baseUri: 'http://ssoinstance/'
+        #
+        #  # Service base path where SSO client webservices are mounted
+        #  serviceBasePath: /sso
+        #
+        #  # An optional public key filename, if none is specified the following key will be used
+        #  publicKeyFilename: 'resource://Flowpack.SingleSignOn.DemoServer/Private/Fixtures/DemoClient.pub'

@@ -1,24 +1,25 @@
 <?php
-namespace Acme\DemoServer\Controller\Test;
+namespace Flowpack\SingleSignOn\DemoServer\Controller\Test;
 
-/*                                                                        *
- * This script belongs to the TYPO3 Flow package "Acme.DemoServer".       *
- *                                                                        *
- *                                                                        */
+/*                                                                                   *
+ * This script belongs to the TYPO3 Flow package "Flowpack.SingleSignOn.DemoServer". *
+ *                                                                                   */
 
 use TYPO3\Flow\Annotations as Flow;
-use \Acme\DemoServer\Domain\Model\User;
+use \Flowpack\SingleSignOn\DemoServer\Domain\Model\User;
+use TYPO3\Flow\Mvc\Controller\ActionController;
+use TYPO3\Flow\Property\TypeConverter\PersistentObjectConverter;
 
 /**
  * User management for acceptance tests
  *
  * @Flow\Scope("singleton")
  */
-class UserController extends \TYPO3\Flow\Mvc\Controller\ActionController {
+class UserController extends ActionController {
 
 	/**
 	 * @Flow\Inject
-	 * @var \Acme\DemoServer\Domain\Repository\UserRepository
+	 * @var \Flowpack\SingleSignOn\DemoServer\Domain\Repository\UserRepository
 	 */
 	protected $userRepository;
 
@@ -37,12 +38,12 @@ class UserController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 	 */
 	public function initializeCreateAction() {
 		$this->arguments->getArgument('user')->getPropertyMappingConfiguration()
-			->setTypeConverterOption('TYPO3\Flow\Property\TypeConverter\PersistentObjectConverter', \TYPO3\Flow\Property\TypeConverter\PersistentObjectConverter::CONFIGURATION_CREATION_ALLOWED, TRUE)
+			->setTypeConverterOption('TYPO3\Flow\Property\TypeConverter\PersistentObjectConverter', PersistentObjectConverter::CONFIGURATION_CREATION_ALLOWED, TRUE)
 			->allowAllProperties();
 	}
 
 	/**
-	 * @param \Acme\DemoServer\Domain\Model\User $user
+	 * @param \Flowpack\SingleSignOn\DemoServer\Domain\Model\User $user
 	 * @param string $password
 	 */
 	public function createAction(User $user, $password) {

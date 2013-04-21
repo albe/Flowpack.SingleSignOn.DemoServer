@@ -1,12 +1,12 @@
 <?php
-namespace Acme\DemoServer\Controller;
+namespace Flowpack\SingleSignOn\DemoServer\Controller;
 
-/*                                                                        *
- * This script belongs to the TYPO3 Flow package "Acme.DemoServer".       *
- *                                                                        *
- *                                                                        */
+/*                                                                                   *
+ * This script belongs to the TYPO3 Flow package "Flowpack.SingleSignOn.DemoServer". *
+ *                                                                                   */
 
 use TYPO3\Flow\Annotations as Flow;
+use TYPO3\Flow\Security\Authentication\Controller\AbstractAuthenticationController;
 
 /**
  * Login controller for local authentication
@@ -16,13 +16,12 @@ use TYPO3\Flow\Annotations as Flow;
  *
  * @Flow\Scope("singleton")
  */
-class LoginController extends \TYPO3\Flow\Security\Authentication\Controller\AbstractAuthenticationController {
+class LoginController extends AbstractAuthenticationController {
 
 	/**
 	 * Render a login form
 	 */
 	public function indexAction() {
-
 	}
 
 	/**

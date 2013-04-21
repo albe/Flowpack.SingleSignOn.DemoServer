@@ -1,15 +1,30 @@
 {
-	"name": "acme\/demoserver",
+	"name": "flowpack/singlesignon-demoserver",
 	"type": "typo3-flow-package",
 	"description": "SSO Demo Server",
+	"license": ["MIT"],
+	"authors": [
+		{
+			"name": "Christopher Hlubek",
+			"email": "hlubek@networkteam.com",
+			"homepage": "http://www.networkteam.com",
+			"role": "Developer"
+		},
+		{
+			"name": "Robert Lemke",
+			"email": "rl@robertlemke.com",
+			"homepage": "http://robertlemke.com",
+			"role": "Developer"
+		}
+	],
 	"require": {
 		"typo3\/flow": "*",
-		"typo3\/singlesignon-server": "dev-master",
+		"flowpack\/singlesignon-server": "dev-master",
 		"typo3\/twitter-bootstrap": "dev-master"
 	},
 	"autoload": {
 		"psr-0": {
-			"Acme\\DemoServer": "Classes"
+			"Flowpack\\SingleSignOn\\DemoServer": "Classes"
 		}
 	}
 }

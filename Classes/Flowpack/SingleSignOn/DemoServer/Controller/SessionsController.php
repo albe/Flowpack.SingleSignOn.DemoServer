@@ -1,19 +1,20 @@
 <?php
-namespace Acme\DemoServer\Controller;
+namespace Flowpack\SingleSignOn\DemoServer\Controller;
 
-/*                                                                        *
- * This script belongs to the TYPO3 Flow package "Acme.DemoServer".       *
- *                                                                        *
- *                                                                        */
+/*                                                                                   *
+ * This script belongs to the TYPO3 Flow package "Flowpack.SingleSignOn.DemoServer". *
+ *                                                                                   */
 
 use TYPO3\Flow\Annotations as Flow;
+use TYPO3\Flow\Mvc\Controller\ActionController;
+use TYPO3\Flow\Session\Session;
 
 /**
- * SSO server sessions controller
+ * SSO demo server sessions controller
  *
  * @Flow\Scope("singleton")
  */
-class SessionsController extends \TYPO3\Flow\Mvc\Controller\ActionController {
+class SessionsController extends ActionController {
 
 	/**
 	 * @Flow\Inject
@@ -23,6 +24,8 @@ class SessionsController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 
 	/**
 	 * Display sessions
+	 *
+	 * @return void
 	 */
 	public function indexAction() {
 		$currentSession = $this->sessionManager->getCurrentSession();
@@ -35,10 +38,11 @@ class SessionsController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 	/**
 	 * Destroy a session
 	 *
-	 * @param \TYPO3\Flow\Session\Session $session
+	 * @param Session $session
+	 * @return void
 	 * @Flow\IgnoreValidation("$session")
 	 */
-	public function destroyAction(\TYPO3\Flow\Session\Session $session) {
+	public function destroyAction(Session $session) {
 		$session->destroy('Through web interface');
 
 		$this->addFlashMessage('Session destroyed');
@@ -48,6 +52,8 @@ class SessionsController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 
 	/**
 	 * Destroys all sessions
+	 *
+	 * @return void
 	 */
 	public function destroyAllAction() {
 		$sessions = $this->sessionManager->getActiveSessions();

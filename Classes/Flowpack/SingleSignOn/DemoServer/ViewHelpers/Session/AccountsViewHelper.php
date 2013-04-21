@@ -1,10 +1,9 @@
 <?php
-namespace Acme\DemoServer\ViewHelpers\Session;
+namespace Flowpack\SingleSignOn\DemoServer\ViewHelpers\Session;
 
-/*                                                                        *
- * This script belongs to the TYPO3 Flow package "Acme.DemoServer".       *
- *                                                                        *
- *                                                                        */
+/*                                                                                   *
+ * This script belongs to the TYPO3 Flow package "Flowpack.SingleSignOn.DemoServer". *
+ *                                                                                   */
 
 use TYPO3\Flow\Annotations as Flow;
 

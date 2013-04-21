@@ -2,7 +2,7 @@
   name: 'DemoServer welcome'
   uriPattern: ''
   defaults:
-    '@package':    'Acme.DemoServer'
+    '@package':    'Flowpack.SingleSignOn.DemoServer'
     '@controller': 'Standard'
     '@action':     'index'
 
@@ -10,7 +10,7 @@
   name: 'DemoServer login'
   uriPattern: 'login(/{@action})'
   defaults:
-    '@package':    'Acme.DemoServer'
+    '@package':    'Flowpack.SingleSignOn.DemoServer'
     '@controller': 'Login'
     '@action':     'index'
 
@@ -18,7 +18,7 @@
   name: 'DemoServer sessions'
   uriPattern: 'sessions(/{@action})'
   defaults:
-    '@package':    'Acme.DemoServer'
+    '@package':    'Flowpack.SingleSignOn.DemoServer'
     '@controller': 'Sessions'
     '@action':     'index'
   appendExceedingArguments: TRUE
@@ -27,12 +27,12 @@
   name: 'DemoServer test user service with action'
   uriPattern: 'test/user/{@action}'
   defaults:
-    '@package':    'Acme.DemoServer'
+    '@package':    'Flowpack.SingleSignOn.DemoServer'
     '@controller': 'Test\User'
 
 -
   name: 'DemoServer test session service with action'
   uriPattern: 'test/session/{@action}'
   defaults:
-    '@package':    'Acme.DemoServer'
+    '@package':    'Flowpack.SingleSignOn.DemoServer'
     '@controller': 'Test\Session'
