@@ -111,7 +111,7 @@ class DemoCommandController extends CommandController {
 		$this->outputLine('Registered demo server key pair (fingerprint: %s)', array($serverKeyPairFingerprint));
 
 		$globalSettings = $this->yamlSource->load(FLOW_PATH_CONFIGURATION . '/Settings');
-		$globalSettings['Flowpack']['SingleSignOn']['Server']['server']['keyPairUuid'] = $serverKeyPairFingerprint;
+		$globalSettings['Flowpack']['SingleSignOn']['Server']['server']['keyPairFingerprint'] = $serverKeyPairFingerprint;
 		$this->yamlSource->save(FLOW_PATH_CONFIGURATION . '/Settings', $globalSettings);
 		$this->outputLine('Wrote settings to file %s', array(FLOW_PATH_CONFIGURATION . '/Settings.yaml'));
 
