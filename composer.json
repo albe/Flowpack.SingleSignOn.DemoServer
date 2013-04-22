@@ -18,7 +18,7 @@
 		}
 	],
 	"require": {
-		"typo3\/flow": "*",
+		"typo3\/flow": "~2.0",
 		"flowpack\/singlesignon-server": "dev-master",
 		"typo3\/twitter-bootstrap": "dev-master"
 	},
