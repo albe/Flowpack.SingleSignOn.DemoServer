@@ -171,8 +171,6 @@ class DemoCommandController extends CommandController {
 		$user->setLastname($lastname);
 
 		$account = $this->accountFactory->createAccountWithPassword($username, $password);
-		$account->setParty($user);
-
 		$user->addAccount($account);
 
 		foreach ($roleIdentifiers as $roleIdentifier) {

@@ -24,6 +24,18 @@ class UserController extends ActionController {
 	protected $userRepository;
 
 	/**
+	 * @Flow\Inject
+	 * @var \TYPO3\Flow\Security\AccountFactory
+	 */
+	protected $accountFactory;
+
+	/**
+	 * @Flow\Inject
+	 * @var \TYPO3\Flow\Security\Policy\PolicyService
+	 */
+	protected $policyService;
+
+	/**
 	 * @var string
 	 */
 	protected $defaultViewObjectName = 'TYPO3\Flow\Mvc\View\JsonView';
@@ -44,10 +56,22 @@ class UserController extends ActionController {
 
 	/**
 	 * @param \Flowpack\SingleSignOn\DemoServer\Domain\Model\User $user
+	 * @param string $username
 	 * @param string $password
+	 * @param string $role
 	 */
-	public function createAction(User $user, $password) {
+	public function createAction(User $user, $username, $password, $role) {
+		$account = $this->accountFactory->createAccountWithPassword($username, $password);
+		$user->addAccount($account);
+
 		$user->setPassword($password);
+
+		try {
+			$roleObject = $this->policyService->getRole($role);
+		} catch (\TYPO3\Flow\Security\Exception\NoSuchRoleException $e) {
+			$roleObject = $this->policyService->createRole($role);
+		}
+		$user->getPrimaryAccount()->addRole($roleObject);
 		$this->userRepository->add($user);
 
 		$this->view->assign('value', array('success' => TRUE));
