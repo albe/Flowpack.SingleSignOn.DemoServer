@@ -1,9 +1,9 @@
 <?php
 namespace Flowpack\SingleSignOn\DemoServer\ViewHelpers\Session;
 
-/*                                                                                   *
- * This script belongs to the TYPO3 Flow package "Flowpack.SingleSignOn.DemoServer". *
- *                                                                                   */
+/*                                                                                       *
+ * This script belongs to the Flow Framework package "Flowpack.SingleSignOn.DemoServer". *
+ *                                                                                       */
 
 use TYPO3\Flow\Annotations as Flow;
 
@@ -11,6 +11,8 @@ use TYPO3\Flow\Annotations as Flow;
  * Get registered accounts from a session
  */
 class AccountsViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractViewHelper {
+
+	protected $escapeOutput = FALSE;
 
 	/**
 	 * Assign the registered accounts to a template variable
@@ -34,4 +36,3 @@ class AccountsViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractViewHelper
 
 }
 
-?>

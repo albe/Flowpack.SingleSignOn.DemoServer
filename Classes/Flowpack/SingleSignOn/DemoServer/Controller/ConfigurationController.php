@@ -1,9 +1,9 @@
 <?php
 namespace Flowpack\SingleSignOn\DemoServer\Controller;
 
-/*                                                                                   *
- * This script belongs to the TYPO3 Flow package "Flowpack.SingleSignOn.DemoServer". *
- *                                                                                   */
+/*                                                                                       *
+ * This script belongs to the Flow Framework package "Flowpack.SingleSignOn.DemoServer". *
+ *                                                                                       */
 
 use Symfony\Component\Yaml\Yaml;
 use TYPO3\Flow\Annotations as Flow;
@@ -43,4 +43,3 @@ class ConfigurationController extends ActionController {
 
 }
 
-?>

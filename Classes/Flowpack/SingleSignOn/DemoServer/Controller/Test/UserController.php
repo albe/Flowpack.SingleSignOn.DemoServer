@@ -1,9 +1,9 @@
 <?php
 namespace Flowpack\SingleSignOn\DemoServer\Controller\Test;
 
-/*                                                                                   *
- * This script belongs to the TYPO3 Flow package "Flowpack.SingleSignOn.DemoServer". *
- *                                                                                   */
+/*                                                                                       *
+ * This script belongs to the Flow Framework package "Flowpack.SingleSignOn.DemoServer". *
+ *                                                                                       */
 
 use TYPO3\Flow\Annotations as Flow;
 use \Flowpack\SingleSignOn\DemoServer\Domain\Model\User;
@@ -94,4 +94,3 @@ class UserController extends ActionController {
 	}
 
 }
-?>

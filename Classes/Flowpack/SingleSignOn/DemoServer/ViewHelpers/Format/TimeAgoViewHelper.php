@@ -1,9 +1,9 @@
 <?php
 namespace Flowpack\SingleSignOn\DemoServer\ViewHelpers\Format;
 
-/*                                                                                   *
- * This script belongs to the TYPO3 Flow package "Flowpack.SingleSignOn.DemoServer". *
- *                                                                                   */
+/*                                                                                       *
+ * This script belongs to the Flow Framework package "Flowpack.SingleSignOn.DemoServer". *
+ *                                                                                       */
 
 use TYPO3\Flow\Annotations as Flow;
 
@@ -43,4 +43,3 @@ class TimeAgoViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractViewHelper 
 
 }
 
-?>

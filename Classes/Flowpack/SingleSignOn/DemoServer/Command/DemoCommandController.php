@@ -1,9 +1,9 @@
 <?php
 namespace Flowpack\SingleSignOn\DemoServer\Command;
 
-/*                                                                                   *
- * This script belongs to the TYPO3 Flow package "Flowpack.SingleSignOn.DemoServer". *
- *                                                                                   */
+/*                                                                                       *
+ * This script belongs to the Flow Framework package "Flowpack.SingleSignOn.DemoServer". *
+ *                                                                                       */
 
 use Flowpack\SingleSignOn\DemoServer\Domain\Model\User;
 use Flowpack\SingleSignOn\Server\Domain\Model\SsoClient;
@@ -188,4 +188,3 @@ class DemoCommandController extends CommandController {
 	}
 
 }
-?>
