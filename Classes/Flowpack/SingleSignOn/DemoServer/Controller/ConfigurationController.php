@@ -17,29 +17,29 @@ use TYPO3\Flow\Mvc\Controller\ActionController;
  */
 class ConfigurationController extends ActionController {
 
-	/**
-	 * @Flow\Inject
-	 * @var \Flowpack\SingleSignOn\Server\Domain\Repository\SsoClientRepository
-	 */
-	protected $ssoClientRepository;
+    /**
+     * @Flow\Inject
+     * @var \Flowpack\SingleSignOn\Server\Domain\Repository\SsoClientRepository
+     */
+    protected $ssoClientRepository;
 
-	/**
-	 * @Flow\Inject
-	 * @var \TYPO3\Flow\Configuration\ConfigurationManager
-	 */
-	protected $configurationManager;
+    /**
+     * @Flow\Inject
+     * @var \TYPO3\Flow\Configuration\ConfigurationManager
+     */
+    protected $configurationManager;
 
-	/**
-	 * Display configuration and registered clients
-	 */
-	public function indexAction() {
-		$ssoClients = $this->ssoClientRepository->findAll();
-		$this->view->assign('ssoClients', $ssoClients);
+    /**
+     * Display configuration and registered clients
+     */
+    public function indexAction() {
+        $ssoClients = $this->ssoClientRepository->findAll();
+        $this->view->assign('ssoClients', $ssoClients);
 
-		$serverSettings = $this->configurationManager->getConfiguration(ConfigurationManager::CONFIGURATION_TYPE_SETTINGS, 'Flowpack.SingleSignOn.Server');
-		$yaml = Yaml::dump($serverSettings);
-		$this->view->assign('serverSettings', $yaml);
-	}
+        $serverSettings = $this->configurationManager->getConfiguration(ConfigurationManager::CONFIGURATION_TYPE_SETTINGS, 'Flowpack.SingleSignOn.Server');
+        $yaml = Yaml::dump($serverSettings);
+        $this->view->assign('serverSettings', $yaml);
+    }
 
 }
 

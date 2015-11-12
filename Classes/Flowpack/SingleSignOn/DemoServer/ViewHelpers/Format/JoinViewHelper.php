@@ -12,16 +12,16 @@ use TYPO3\Flow\Annotations as Flow;
  */
 class JoinViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractViewHelper {
 
-	/**
-	 * Get the distance from the given time to now in words
-	 *
-	 * @param array $items
-	 * @param string $delimiter
-	 * @return string
-	 */
-	public function render($items, $delimiter = ', ') {
-		return join($delimiter, $items);
-	}
+    /**
+     * Get the distance from the given time to now in words
+     *
+     * @param array $items
+     * @param string $delimiter
+     * @return string
+     */
+    public function render($items, $delimiter = ', ') {
+        return join($delimiter, $items);
+    }
 
 }
 

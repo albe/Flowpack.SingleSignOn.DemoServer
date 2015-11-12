@@ -15,13 +15,13 @@ use TYPO3\Flow\Mvc\Controller\ActionController;
  */
 class StandardController extends ActionController {
 
-	/**
-	 * Display a welcome screen
-	 *
-	 * @return void
-	 */
-	public function indexAction() {
-	}
+    /**
+     * Display a welcome screen
+     *
+     * @return void
+     */
+    public function indexAction() {
+    }
 
 }
 
