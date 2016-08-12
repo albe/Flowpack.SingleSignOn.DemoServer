@@ -30,5 +30,8 @@
         }
     },
     "extra": {
+        "applied-flow-migrations": [
+            "TYPO3.Flow-20151113161300"
+        ]
     }
 }
