@@ -5,9 +5,9 @@ namespace Flowpack\SingleSignOn\DemoServer\Controller;
  * This script belongs to the Flow Framework package "Flowpack.SingleSignOn.DemoServer". *
  *                                                                                       */
 
-use TYPO3\Flow\Annotations as Flow;
-use TYPO3\Flow\Mvc\Controller\ActionController;
-use TYPO3\Flow\Session\Session;
+use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Mvc\Controller\ActionController;
+use Neos\Flow\Session\Session;
 
 /**
  * SSO demo server sessions controller
@@ -18,7 +18,7 @@ class SessionsController extends ActionController {
 
     /**
      * @Flow\Inject
-     * @var \TYPO3\Flow\Session\SessionManagerInterface
+     * @var \Neos\Flow\Session\SessionManagerInterface
      */
     protected $sessionManager;
 

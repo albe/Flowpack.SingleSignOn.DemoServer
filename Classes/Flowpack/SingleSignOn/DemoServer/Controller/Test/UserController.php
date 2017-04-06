@@ -5,10 +5,10 @@ namespace Flowpack\SingleSignOn\DemoServer\Controller\Test;
  * This script belongs to the Flow Framework package "Flowpack.SingleSignOn.DemoServer". *
  *                                                                                       */
 
-use TYPO3\Flow\Annotations as Flow;
+use Neos\Flow\Annotations as Flow;
 use \Flowpack\SingleSignOn\DemoServer\Domain\Model\User;
-use TYPO3\Flow\Mvc\Controller\ActionController;
-use TYPO3\Flow\Property\TypeConverter\PersistentObjectConverter;
+use Neos\Flow\Mvc\Controller\ActionController;
+use Neos\Flow\Property\TypeConverter\PersistentObjectConverter;
 
 /**
  * User management for acceptance tests
@@ -25,20 +25,20 @@ class UserController extends ActionController {
 
     /**
      * @Flow\Inject
-     * @var \TYPO3\Flow\Security\AccountFactory
+     * @var \Neos\Flow\Security\AccountFactory
      */
     protected $accountFactory;
 
     /**
      * @Flow\Inject
-     * @var \TYPO3\Flow\Security\Policy\PolicyService
+     * @var \Neos\Flow\Security\Policy\PolicyService
      */
     protected $policyService;
 
     /**
      * @var string
      */
-    protected $defaultViewObjectName = 'TYPO3\Flow\Mvc\View\JsonView';
+    protected $defaultViewObjectName = 'Neos\Flow\Mvc\View\JsonView';
 
     /**
      * @var array
@@ -50,7 +50,7 @@ class UserController extends ActionController {
      */
     public function initializeCreateAction() {
         $this->arguments->getArgument('user')->getPropertyMappingConfiguration()
-            ->setTypeConverterOption('TYPO3\Flow\Property\TypeConverter\PersistentObjectConverter', PersistentObjectConverter::CONFIGURATION_CREATION_ALLOWED, true)
+            ->setTypeConverterOption('Neos\Flow\Property\TypeConverter\PersistentObjectConverter', PersistentObjectConverter::CONFIGURATION_CREATION_ALLOWED, true)
             ->allowAllProperties();
     }
 
@@ -68,7 +68,7 @@ class UserController extends ActionController {
 
         try {
             $roleObject = $this->policyService->getRole($role);
-        } catch (\TYPO3\Flow\Security\Exception\NoSuchRoleException $e) {
+        } catch (\Neos\Flow\Security\Exception\NoSuchRoleException $e) {
             $roleObject = $this->policyService->createRole($role);
         }
         $user->getPrimaryAccount()->addRole($roleObject);

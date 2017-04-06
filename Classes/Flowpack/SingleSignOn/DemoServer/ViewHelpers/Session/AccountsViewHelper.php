@@ -5,7 +5,7 @@ namespace Flowpack\SingleSignOn\DemoServer\ViewHelpers\Session;
  * This script belongs to the Flow Framework package "Flowpack.SingleSignOn.DemoServer". *
  *                                                                                       */
 
-use TYPO3\Flow\Annotations as Flow;
+use Neos\Flow\Annotations as Flow;
 
 /**
  * Get registered accounts from a session
@@ -17,7 +17,7 @@ class AccountsViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractViewHelper
     /**
      * Assign the registered accounts to a template variable
      *
-     * @param \TYPO3\Flow\Session\SessionInterface $session
+     * @param \Neos\Flow\Session\SessionInterface $session
      * @param string $as Variable name for the account
      * @return mixed
      */

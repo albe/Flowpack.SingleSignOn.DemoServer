@@ -7,10 +7,10 @@ namespace Flowpack\SingleSignOn\DemoServer\Command;
 
 use Flowpack\SingleSignOn\DemoServer\Domain\Model\User;
 use Flowpack\SingleSignOn\Server\Domain\Model\SsoClient;
-use TYPO3\Flow\Annotations as Flow;
-use TYPO3\Flow\Cli\CommandController;
-use TYPO3\Flow\Utility\Arrays;
-use TYPO3\Flow\Utility\Files;
+use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Cli\CommandController;
+use Neos\Flow\Utility\Arrays;
+use Neos\Flow\Utility\Files;
 
 /**
  * Command controller for setting up a demo server
@@ -21,13 +21,13 @@ class DemoCommandController extends CommandController {
 
     /**
      * @Flow\Inject
-     * @var \TYPO3\Flow\Security\Cryptography\RsaWalletServiceInterface
+     * @var \Neos\Flow\Security\Cryptography\RsaWalletServiceInterface
      */
     protected $rsaWalletService;
 
     /**
      * @Flow\Inject
-     * @var \TYPO3\Flow\Configuration\Source\YamlSource
+     * @var \Neos\Flow\Configuration\Source\YamlSource
      */
     protected $yamlSource;
 
@@ -45,7 +45,7 @@ class DemoCommandController extends CommandController {
 
     /**
      * @Flow\Inject
-     * @var \TYPO3\Flow\Security\AccountRepository
+     * @var \Neos\Flow\Security\AccountRepository
      */
     protected $accountRepository;
 
@@ -57,19 +57,19 @@ class DemoCommandController extends CommandController {
 
     /**
      * @Flow\Inject
-     * @var \TYPO3\Flow\Security\Policy\PolicyService
+     * @var \Neos\Flow\Security\Policy\PolicyService
      */
     protected $policyService;
 
     /**
      * @Flow\Inject
-     * @var \TYPO3\Flow\Security\AccountFactory
+     * @var \Neos\Flow\Security\AccountFactory
      */
     protected $accountFactory;
 
     /**
      * @Flow\Inject
-     * @var \TYPO3\Flow\Persistence\PersistenceManagerInterface
+     * @var \Neos\Flow\Persistence\PersistenceManagerInterface
      */
     protected $persistenceManager;
 
@@ -176,7 +176,7 @@ class DemoCommandController extends CommandController {
         foreach ($roleIdentifiers as $roleIdentifier) {
             try {
                 $role = $this->policyService->getRole($roleIdentifier);
-            } catch (\TYPO3\Flow\Security\Exception\NoSuchRoleException $e) {
+            } catch (\Neos\Flow\Security\Exception\NoSuchRoleException $e) {
                 $this->outputLine('Role "%s" does not exist, creating it.', array($roleIdentifier));
                 $role = $this->policyService->createRole($roleIdentifier);
             }

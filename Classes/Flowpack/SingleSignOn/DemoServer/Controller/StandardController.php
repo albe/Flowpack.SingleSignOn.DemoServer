@@ -5,8 +5,8 @@ namespace Flowpack\SingleSignOn\DemoServer\Controller;
  * This script belongs to the Flow Framework package "Flowpack.SingleSignOn.DemoServer". *
  *                                                                                       */
 
-use TYPO3\Flow\Annotations as Flow;
-use TYPO3\Flow\Mvc\Controller\ActionController;
+use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Mvc\Controller\ActionController;
 
 /**
  * SSO demo server standard controller

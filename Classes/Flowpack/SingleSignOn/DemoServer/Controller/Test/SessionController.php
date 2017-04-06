@@ -5,8 +5,8 @@ namespace Flowpack\SingleSignOn\DemoServer\Controller\Test;
  * This script belongs to the Flow Framework package "Flowpack.SingleSignOn.DemoServer". *
  *                                                                                       */
 
-use TYPO3\Flow\Annotations as Flow;
-use TYPO3\Flow\Mvc\Controller\ActionController;
+use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Mvc\Controller\ActionController;
 
 /**
  * Session management for acceptance tests
@@ -17,14 +17,14 @@ class SessionController extends ActionController {
 
     /**
      * @Flow\Inject
-     * @var \TYPO3\Flow\Session\SessionManagerInterface
+     * @var \Neos\Flow\Session\SessionManagerInterface
      */
     protected $sessionManager;
 
     /**
      * @var string
      */
-    protected $defaultViewObjectName = 'TYPO3\Flow\Mvc\View\JsonView';
+    protected $defaultViewObjectName = 'Neos\Flow\Mvc\View\JsonView';
 
     /**
      * @var array

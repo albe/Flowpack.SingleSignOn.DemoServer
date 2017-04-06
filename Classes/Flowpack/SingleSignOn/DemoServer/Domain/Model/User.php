@@ -5,7 +5,7 @@ namespace Flowpack\SingleSignOn\DemoServer\Domain\Model;
  * This script belongs to the Flow Framework package "Flowpack.SingleSignOn.DemoServer". *
  *                                                                                       */
 
-use TYPO3\Flow\Annotations as Flow;
+use Neos\Flow\Annotations as Flow;
 use Doctrine\ORM\Mapping as ORM;
 use TYPO3\Party\Domain\Model\AbstractParty;
 
@@ -33,7 +33,7 @@ class User extends AbstractParty {
 
     /**
      * @Flow\Inject
-     * @var \TYPO3\Flow\Security\Cryptography\HashService
+     * @var \Neos\Flow\Security\Cryptography\HashService
      */
     protected $hashService;
 
@@ -61,7 +61,7 @@ class User extends AbstractParty {
     }
 
     /**
-     * @return \TYPO3\Flow\Security\Policy\Role
+     * @return \Neos\Flow\Security\Policy\Role
      */
     public function getRole() {
         return current($this->getPrimaryAccount()->getRoles());
@@ -111,7 +111,7 @@ class User extends AbstractParty {
     }
 
     /**
-     * @return \TYPO3\Flow\Security\Account
+     * @return \Neos\Flow\Security\Account
      */
     public function getPrimaryAccount() {
         if (count($this->accounts) > 0) {

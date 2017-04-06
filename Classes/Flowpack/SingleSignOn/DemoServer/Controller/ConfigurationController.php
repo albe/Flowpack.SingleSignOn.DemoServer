@@ -6,9 +6,9 @@ namespace Flowpack\SingleSignOn\DemoServer\Controller;
  *                                                                                       */
 
 use Symfony\Component\Yaml\Yaml;
-use TYPO3\Flow\Annotations as Flow;
-use TYPO3\Flow\Configuration\ConfigurationManager;
-use TYPO3\Flow\Mvc\Controller\ActionController;
+use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Configuration\ConfigurationManager;
+use Neos\Flow\Mvc\Controller\ActionController;
 
 /**
  * SSO demo server configuration controller
@@ -25,7 +25,7 @@ class ConfigurationController extends ActionController {
 
     /**
      * @Flow\Inject
-     * @var \TYPO3\Flow\Configuration\ConfigurationManager
+     * @var \Neos\Flow\Configuration\ConfigurationManager
      */
     protected $configurationManager;
 
