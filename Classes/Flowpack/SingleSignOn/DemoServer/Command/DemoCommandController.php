@@ -9,8 +9,8 @@ use Flowpack\SingleSignOn\DemoServer\Domain\Model\User;
 use Flowpack\SingleSignOn\Server\Domain\Model\SsoClient;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Cli\CommandController;
-use Neos\Flow\Utility\Arrays;
-use Neos\Flow\Utility\Files;
+use Neos\Utility\Arrays;
+use Neos\Utility\Files;
 
 /**
  * Command controller for setting up a demo server

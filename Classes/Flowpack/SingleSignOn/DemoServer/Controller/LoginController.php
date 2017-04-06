@@ -35,7 +35,7 @@ class LoginController extends AbstractAuthenticationController {
             $this->redirectToRequest($originalRequest);
         }
 
-        $this->addFlashMessage('No original SSO request present. Account authenticated on server.', 'Authentication successful', \Neos\Flow\Error\Message::SEVERITY_OK);
+        $this->addFlashMessage('No original SSO request present. Account authenticated on server.', 'Authentication successful', \Neos\Error\Messages\Message::SEVERITY_OK);
         $this->redirect('index', 'Standard');
     }
 
