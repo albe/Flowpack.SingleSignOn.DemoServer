@@ -7,7 +7,7 @@ namespace Flowpack\SingleSignOn\DemoServer\Domain\Model;
 
 use Neos\Flow\Annotations as Flow;
 use Doctrine\ORM\Mapping as ORM;
-use TYPO3\Party\Domain\Model\AbstractParty;
+use Neos\Party\Domain\Model\AbstractParty;
 
 /**
  * User domain model
