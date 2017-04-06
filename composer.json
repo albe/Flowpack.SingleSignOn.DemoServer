@@ -1,6 +1,6 @@
 {
     "name": "flowpack/singlesignon-demoserver",
-    "type": "typo3-flow-package",
+    "type": "neos-flow-package",
     "description": "SSO Demo Server",
     "license": [
         "MIT"
@@ -20,9 +20,9 @@
         }
     ],
     "require": {
-        "typo3/flow": "~3.0",
+        "neos/flow": "~4.0",
         "flowpack/singlesignon-server": "dev-master",
-        "typo3/twitter-bootstrap": "dev-master"
+        "neos/twitter-bootstrap": "dev-master"
     },
     "autoload": {
         "psr-0": {
