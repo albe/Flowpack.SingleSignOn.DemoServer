@@ -10,7 +10,7 @@ use Neos\Flow\Annotations as Flow;
 /**
  * Join view helper
  */
-class JoinViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractViewHelper {
+class JoinViewHelper extends \Neos\FluidAdaptor\Core\ViewHelper\AbstractViewHelper {
 
     /**
      * Get the distance from the given time to now in words

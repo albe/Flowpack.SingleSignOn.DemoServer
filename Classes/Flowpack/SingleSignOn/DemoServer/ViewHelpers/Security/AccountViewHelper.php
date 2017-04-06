@@ -10,7 +10,7 @@ use Neos\Flow\Annotations as Flow;
 /**
  * Security account view helper
  */
-class AccountViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractViewHelper {
+class AccountViewHelper extends \Neos\FluidAdaptor\Core\ViewHelper\AbstractViewHelper {
 
     /**
      * @Flow\Inject

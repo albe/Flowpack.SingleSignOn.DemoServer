@@ -10,7 +10,7 @@ use Neos\Flow\Annotations as Flow;
 /**
  * Get registered accounts from a session
  */
-class AccountsViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractViewHelper {
+class AccountsViewHelper extends \Neos\FluidAdaptor\Core\ViewHelper\AbstractViewHelper {
 
     protected $escapeOutput = false;
 
